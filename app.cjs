@@ -30,7 +30,6 @@ app.use(express.json()); //@@
 
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
-app.use(express.static(path.join(__dirname, "public")));
 
 // connect to mongodb
 
@@ -111,7 +110,18 @@ app.use((req, res, next) => {
 
 }); */
 
-// use the listing routes
+
+
+ app.get("/", (req, res) => {
+  res.redirect("/listings");
+ }); 
+
+
+ // Fav icon fix
+app.get("/favicon.ico", (req, res) => res.status(204).end());
+
+
+ // use the listing routes
 app.use("/listings", listingR);
 
 //use the review routes
@@ -120,9 +130,6 @@ app.use("/listings/:id/reviews", reviewR);
 // use the user routes
 app.use("/", userR);
 
-/* app.get("/", (req, res) => {
-  res.send("Hello World");
-}); */
 
 //when the user enters a wrong url or page that does not exist
 app.use((req, res, next) => {
@@ -133,7 +140,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong" } = err;
 
-  res.status(statusCode).render("./listings/Error.ejs", { message });
+  res.status(statusCode).render("/listings/Error.ejs", { message });
 });
 
 const port = process.env.PORT || 8080;
