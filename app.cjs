@@ -1,4 +1,3 @@
-
 if (process.env.NODE_ENV != "production") {
   require("dotenv").config(); // load environment variables from .env file
 }
@@ -51,11 +50,11 @@ async function main() {
   if (mongoose.connection.readyState !== 0) {
     await mongoose.disconnect();
   }
-  await mongoose.connect(dburl);  //@@@
+  await mongoose.connect(dburl); //@@@
 }
 
 // session store
- const store = MongoStore.create({
+const store = MongoStore.create({
   mongoUrl: dburl,
   crypto: {
     secret: process.env.SECRET,
@@ -65,11 +64,11 @@ async function main() {
 
 store.on("error", () => {
   console.log("ERROR IN MONGO SESSION STORE", err);
-}); 
+});
 
 //session configuration
 const sessionOptions = {
- // store,
+  // store,
   secret: process.env.SECRET,
   resave: false, // this says do you want to save the session even if nothing is changed
   saveUninitialized: true, // this says do you want to store session even if nothing is stored if yes then true if no then false
@@ -79,8 +78,6 @@ const sessionOptions = {
     httpOnly: true, // client side scripts cannot access the cookie
   },
 };
-
-
 
 app.use(session(sessionOptions));
 // use flash
@@ -139,6 +136,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("./listings/Error.ejs", { message });
 });
 
-app.listen(8080, () => {
-  console.log("Server started on http://localhost:8080");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
