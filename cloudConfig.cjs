@@ -33,9 +33,9 @@ if (hasCloudinaryEnv) {
         allowed_formats: ["jpeg", "png", "jpg"], // snake_case REQUIRED
       },
     });
-    console.log("✓ Cloudinary storage initialized successfully");
+    console.log(" Cloudinary storage initialized successfully");
   } catch (e) {
-    console.error("✗ Error creating CloudinaryStorage:", e.message);
+    console.error("Error creating CloudinaryStorage:", e.message);
   }
 }
 

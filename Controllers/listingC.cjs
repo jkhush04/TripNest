@@ -1,8 +1,14 @@
 const Listing = require("../models/listing.cjs");
 
 module.exports.index = async (req, res) => {
+  try{
   const alllistings = await Listing.find({});
-  res.render("./listings/index.ejs", { alllistings });
+  res.render("/listings/index.ejs", { alllistings });
+  }
+  catch(err){
+    console.error("Index page error", err);
+    res.status(500).send("Error loading index page");
+  }
 };
 
 module.exports.new = (req, res) => {
