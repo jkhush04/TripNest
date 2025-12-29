@@ -88,13 +88,13 @@ Reviews
 
 🧱 Tech Stack
 Layer	Technology
-Backend	Node.js, Express.js
-Database	MongoDB (MongoDB Atlas)
-Authentication	Passport.js
-API Style	REST API
-Image Storage	Cloudinary
-Sessions & Cookies	Express-session
-Deployment	Render
+Backend -	Node.js, Express.js
+Database - MongoDB (MongoDB Atlas)
+Authentication -	Passport.js
+API Style -	REST API
+Image Storage -	Cloudinary
+Sessions & Cookies -	Express-session
+Deployment - Render
 
 
 ❌ Features NOT Implemented (Intentionally)------
